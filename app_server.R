@@ -15,7 +15,7 @@ server <- function(input, output) {
         summarize(Incidents = n())
       p <- plot_ly(volcano_data, labels = ~Country, values = ~Incidents, type = 'pie', 
                    showlegend = FALSE) %>%
-        layout(title = paste0("Proportion of ", input$pie_var, "of volcanos in ", input$year_var),
+        layout(title = paste0("Proportion of ", input$pie_var, " of volcanos in ", input$year_var),
                xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
                yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
       p
