@@ -84,13 +84,14 @@ server <- function(input, output) {
         drop_na(input$pie_var)
       volcano_data_na <- volcano_data_set %>%
         filter(Year == input$year_var)
+      num_missing <- nrow(volcano_data_na) - nrow(volcano_data)
       volcano_data <- volcano_data %>%
         mutate(string = paste(
           paste0(Name, ", ", Country),
           paste0("Date: ", Month, "/", Day, "/", Year),
           sep = "<br>"
         ))
-      if (is.null(dim(volcano_data$Year))) {
+      if (nrow(volcano_data) == 0) {
         p <- plot_ly(volcano_data,
           labels = ~string, values = ~ volcano_data[, input$pie_var],
           type = "pie",
@@ -120,7 +121,8 @@ server <- function(input, output) {
           layout(
             title = paste0(
               "Proportion of ", input$pie_var, " per incident in ",
-              input$year_var, "<br>Number of unrecorded incidents:"
+              input$year_var, "<br>Number of incidents with unrecorded ",
+              input$pie_var, ": ", num_missing
             ),
             xaxis = list(
               showgrid = FALSE, zeroline = FALSE,
