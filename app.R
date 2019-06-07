@@ -1,7 +1,9 @@
 # Load in packages
-library("shiny")
+library(shiny)
 source("app_ui.R")
 source("app_server.R")
+library(rsconnect)
+
 
 # Load shiny application
-shinyApp(ui = my_ui, server = my_server)
+shinyApp(ui = ui, server = server)
