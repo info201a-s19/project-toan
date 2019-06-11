@@ -157,7 +157,8 @@ server <- function(input, output) {
       summarize(Incidents = n(), TOTAL_DAMAGE_MILLIONS = 
                   round(sum(TOTAL_DAMAGE_MILLIONS_DOLLARS) / n(), 1)) 
     vol_table <- left_join(vol_df, vol_table, by = "Country")
-    vol_table$TOTAL_DAMAGE_MILLIONS[is.na(vol_table$TOTAL_DAMAGE_MILLIONS)] <- "Not Available"
+    vol_table$TOTAL_DAMAGE_MILLIONS[is.na(vol_table$TOTAL_DAMAGE_MILLIONS)] <- 
+      "Not Available"
     vol_table$Incidents.y[is.na(vol_table$Incidents.y)] <- 0
     vol_table <- vol_table %>%
       mutate("Missing incidents" = Incidents.x - Incidents.y)
